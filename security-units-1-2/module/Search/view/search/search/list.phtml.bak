@@ -1,3 +1,5 @@
+<?php // send categories to layout ?>
+<?php $this->placeholder('category')->exchangeArray($this->categories); ?>
 <div class="span7">
 <style>
 td {
@@ -9,6 +11,7 @@ th {
 }
 </style>
 <h2><?php echo $this->escapeHtml(ucwords($this->categoryParam)); ?></h2>
+<?php if ($this->messages)?>
 <p>
 <?php if ($this->shortList && $this->shortList->count()) : ?>
 	<table width="100%" cellspacing="5px" cellpadding="5px">
@@ -22,11 +25,13 @@ th {
 		<td><?php echo $this->escapeHtml($item->city); ?></td>
 		<td><?php echo $this->escapeHtml($item->country); ?></td>
 		</tr>
-	   <?php $this->shortList->next(); ?>
+                <?php $this->shortlist->next() ?>
 	<?php endwhile; ?>
 	</table>
 <?php else : ?>
-  	No Listings!
+  	<h3>Sorry!  No Listings for this Search.</h3>
+  	<br />
+  	<a href="<?php echo $this->basePath() ?>/search">BACK</a>
 <?php endif; ?>
 </p>
 </div>
